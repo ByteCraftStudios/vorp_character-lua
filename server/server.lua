@@ -17,12 +17,23 @@ RegisterServerEvent("vorp_CreateNewCharacter", function(source)
 	TriggerClientEvent("vorpcharacter:startCharacterCreator", source)
 end)
 
-
 RegisterServerEvent("vorpcharacter:saveCharacter")
 AddEventHandler("vorpcharacter:saveCharacter", function(skin, clothes, firstname, lastname)
 	local _source = source
-	local playerCoords = Config.SpawnCoords.position
-	local playerHeading = Config.SpawnCoords.heading
+	local playerCoords
+	local playerHeading
+
+	------------------------------BCS------------------------------
+	TriggerEvent("bcs_connector:customSpawn", _source)
+
+	while Spawn.position == nil or Spawn.heading == nil do
+		Wait(100)
+	end
+	---------------------------------------------------------------
+
+	playerCoords = Spawn.position
+	playerHeading = Spawn.heading
+
 	VorpCore.getUser(_source).addCharacter(firstname, lastname, json.encode(skin), json.encode(clothes))
 	Wait(600)
 	TriggerClientEvent("vorp:initCharacter", _source, playerCoords, playerHeading, false)
