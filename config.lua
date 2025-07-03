@@ -10,7 +10,54 @@ Config.Align = "top-left" -- menu position
 Config.MinAge = 18 -- minimum age required to create a character
 
 --* when player choosing a name  make sure it doesn't contain any of the words in the list below
-Config.BannedNames = { "Arthur", "Marshton", "Shit", "Dick" } --* you can add more words
+Config.BannedNames = {
+    "Arthur",
+    "Marshton",
+    "Shit",
+    "Dick",
+    -- Promis / reale Personen
+    "Hitler",
+    "Jackson",
+    "Trump",
+    "Musk",
+    "Wick",
+    -- Moderne Namen
+    "Kevin",
+    "Justin",
+    "Chantal",
+    "Jeremy",
+    "Skylar",
+    "Tyler",
+    "Britney",
+    -- Trollnamen
+    "Hans Wurst",
+    "Mustermann",
+    "Ben Dover",
+    "Mike Hunt",
+    "Al Berto",
+    "Klaus Kleber",
+    "Peter Silie",
+    "Otto Normalverbraucher",
+    -- Unsinnige/Gamer-Namen
+    "xX",
+    "187",
+    "NoScope",
+    "RP_Gamer",
+    "Test Test",
+    -- Rassismus / NS-Bezüge / Sexismus
+    "Nazi",
+    "SS",
+    "Hure",
+    "Neger", -- automatisch blockieren (alte Beleidigung)
+    "Jude",
+    "Schwarzer",
+    "Vergewaltiger",
+    -- Kombinierte RP-Regelverstöße
+    "Sheriff Kevin",
+    "Doktor Protz",
+    "Indianer Jones",
+    "BanjoBandit"
+} --* you can add more words
 
 -- allow player to delete character
 Config.AllowPlayerDeleteCharacter = true
