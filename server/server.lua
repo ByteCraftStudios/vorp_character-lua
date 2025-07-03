@@ -109,6 +109,7 @@ AddEventHandler("vorp_CreateNewCharacter", function(source)
 	TriggerClientEvent("vorpcharacter:startCharacterCreator", source)
 end)
 
+--[[
 local function iniSpawn()
 	local numSpawns = #Config.SpawnCoords
 	if numSpawns == 0 then return print("update config file") end
@@ -118,12 +119,28 @@ local function iniSpawn()
 
 	return selectedSpawn.position, selectedSpawn.heading
 end
+--]]
 
 RegisterServerEvent("vorpcharacter:saveCharacter", function(data)
 	local _source = source
+
+    ------------------------------BCS------------------------------
+    TriggerEvent("bcs_connector:customSpawn", _source)
+
+    while bcs_Spawn.position == nil or bcs_Spawn.heading == nil do
+        Wait(100)
+    end
+
+    local iniPos = bcs_Spawn.position
+    local iniHead = bcs_Spawn.heading
+
+    ---------------------------------------------------------------
+
 	Core.getUser(_source).addCharacter(data)
 	Wait(600)
-	local iniPos, iniHead = iniSpawn()
+
+	-- local iniPos, iniHead = iniSpawn()
+
 	TriggerClientEvent("vorp:initCharacter", _source, iniPos, iniHead, false)
 	SetTimeout(3000, function()
 		TriggerEvent("vorp_NewCharacter", _source)
