@@ -112,6 +112,9 @@ end)
 RegisterServerEvent("vorpcharacter:saveCharacter", function(data)
 	local _source = source
 
+    Core.getUser(_source).addCharacter(data)
+    Wait(600)
+
     ------------------------------BCS------------------------------
     TriggerEvent("bcs_connector:customSpawn", _source)
 
@@ -123,9 +126,6 @@ RegisterServerEvent("vorpcharacter:saveCharacter", function(data)
     local iniHead = bcs_Spawn[_source].heading
     bcs_Spawn[_source] = nil
     ---------------------------------------------------------------
-
-	Core.getUser(_source).addCharacter(data)
-	Wait(600)
 
 	TriggerClientEvent("vorp:initCharacter", _source, iniPos, iniHead, false)
 	SetTimeout(3000, function()

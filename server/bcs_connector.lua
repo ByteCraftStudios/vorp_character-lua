@@ -1,4 +1,3 @@
-local Core = exports.vorp_core:GetCore()
 bcs_Spawn = {}
 
 AddEventHandler("bcs_connector:customSpawn", function(source)
@@ -31,7 +30,11 @@ AddEventHandler("bcs_customSpawn:connector", function(spawnCoords, UseClothingSt
     end
 
     SetTimeout(6000, function()
-        -- Implement bln_notify https://github.com/blnStudio/bln_notify
+        TriggerClientEvent("bln_notify:send", _source, {
+            description = "Du hast $ " .. Player(_source).state.Character.Money .. " bekommen. Bitte wähle jetzt deine Kleidung.",
+            placement = "top-right",
+            duration = 20000,
+        }, "INFO")
     end)
 
     repeat
