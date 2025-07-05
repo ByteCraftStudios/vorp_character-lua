@@ -504,7 +504,7 @@ function OpenCharCreationMenu(clothingtable, value)
                 TakePhoto()
                 Wait(7000)
                 BusyspinnerOff()
-                TriggerServerEvent("vorpcharacter:saveCharacter", PLAYER_DATA)
+                TriggerServerEvent("vorpcharacter:saveCharacter", PLAYER_DATA, IsInCharCreation, IsInClothingStore)
                 CachedComponents = ConvertTableComps(PlayerClothing, PlayerTrackingData)
                 CachedSkin = PlayerSkin
                 SetCamFocusDistance(NewCam, 1.0)
@@ -604,8 +604,8 @@ function BackFromMenu(value)
     Wait(3000)
     SetGameplayCamRelativeHeading(0.0, 1.0)
     ClearPedTasksImmediately(PlayerPedId(), true)
-    DoScreenFadeIn(1500)
-    repeat Wait(0) until IsScreenFadedIn()
+    --DoScreenFadeIn(1500) --bcs_custom
+    --repeat Wait(0) until IsScreenFadedIn() --bcs_custom
     PlayerTrackingData = {}
     TotalAmountToPay = {}
     HairIndexTracker = {}

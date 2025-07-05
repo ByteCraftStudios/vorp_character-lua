@@ -112,6 +112,12 @@ AddEventHandler('onResourceStop', function(resourceName)
     end
 end)
 
+------------------------------BCS------------------------------
+AddEventHandler('bcs_customSpawn:PrepareClothingStore')
+RegisterNetEvent('bcs_customSpawn:PrepareClothingStore', function(selectedClothingStore)
+    PrepareClothingStore(selectedClothingStore)
+end)
+---------------------------------------------------------------
 
 function PrepareClothingStore(value)
     DoScreenFadeOut(0)
@@ -143,12 +149,11 @@ function PrepareClothingStore(value)
     SetCachedClothingIndex()
     Wait(1000)
     TaskStandStill(PlayerPedId(), -1)
+    FreezeEntityPosition(PlayerPedId(), false)
+    Wait(3000)
     DoScreenFadeIn(1000)
     LocalPlayer.state:set('PlayerIsInCharacterShops', true, true) -- this can be used in other resources to disable Huds or metabolism scripts apply effects etc
     repeat Wait(0) until IsScreenFadedIn()
-    SetTimeout(1000, function()
-        FreezeEntityPosition(PlayerPedId(), false)
-    end)
     if value.TypeOfShop == "secondchance" then
         OpenCharCreationMenu(Clothing, value)
     elseif value.TypeOfShop == "clothing" then
